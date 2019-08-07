@@ -1,5 +1,5 @@
-require("dotenv").config();
-const config = require("./config");
+require('dotenv').config();
+const config = require('./config');
 module.exports = {
   pathPrefix: config.gatsby.pathPrefix,
   siteMetadata: {
@@ -8,7 +8,10 @@ module.exports = {
     docsLocation: config.siteMetadata.docsLocation,
     ogImage: config.siteMetadata.ogImage,
     favicon: config.siteMetadata.favicon,
-    logo: { link: config.header.logoLink ? config.header.logoLink : '/', image: config.header.logo }, // backwards compatible
+    logo: {
+      link: config.header.logoLink ? config.header.logoLink : '/',
+      image: config.header.logo,
+    }, // backwards compatible
     headerTitle: config.header.title,
     githubUrl: config.header.githubUrl,
     helpUrl: config.header.helpUrl,
@@ -22,36 +25,36 @@ module.exports = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-          component: require.resolve(`./src/templates/docs.js`)
-      }
+        component: require.resolve(`./src/templates/docs.js`),
+      },
     },
     {
       resolve: 'gatsby-mdx',
       options: {
         gatsbyRemarkPlugins: [
           {
-            resolve: "gatsby-remark-images",
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1035,
-              sizeByPixelDensity: true
-            }
+              sizeByPixelDensity: true,
+            },
           },
           {
-            resolve: 'gatsby-remark-copy-linked-files'
-          }
+            resolve: 'gatsby-remark-copy-linked-files',
+          },
         ],
-        extensions: [".mdx", ".md"]
-      }
+        extensions: ['.mdx', '.md'],
+      },
     },
     'gatsby-plugin-emotion',
     'gatsby-plugin-remove-trailing-slashes',
     'gatsby-plugin-react-helmet',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "docs",
-        path: `${__dirname}/content/`
-      }
+        name: 'docs',
+        path: `${__dirname}/content/`,
+      },
     },
     {
       resolve: `gatsby-plugin-gtag`,
@@ -64,5 +67,5 @@ module.exports = {
         anonymize: false,
       },
     },
-  ]
+  ],
 };

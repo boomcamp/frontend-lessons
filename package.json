@@ -40,6 +40,7 @@
     "react-github-btn": "^1.0.5",
     "react-helmet": "^5.2.0",
     "react-live": "^2.0.1",
+    "react-tiny-link": "^1.0.2",
     "system-components": "^3.0.3"
   },
   "license": "MIT",
