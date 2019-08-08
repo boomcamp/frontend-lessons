@@ -1,5 +1,7 @@
 require('dotenv').config();
+
 const config = require('./config');
+
 module.exports = {
   pathPrefix: config.gatsby.pathPrefix,
   siteMetadata: {
