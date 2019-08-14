@@ -6,6 +6,8 @@ metaDescription: 'Boom.Camp Day 7 Lessons'
 
 import YoutubeEmbed from '../../src/YoutubeEmbed.js';
 
+# JavaScript Functions
+
 ## Pre-Reading
 
 - [Functions](https://eloquentjavascript.net/03_functions.html)
