@@ -6,8 +6,6 @@ metaDescription: 'Boom.Camp Day 8 Lessons'
 
 import YoutubeEmbed from '../../src/YoutubeEmbed.js';
 
-# JavaScript Objects & Arrays
-
 ## Pre-Reading
 
 [JavaScript Objects in Detail](http://javascriptissexy.com/javascript-objects-in-detail/)
@@ -22,6 +20,8 @@ import YoutubeEmbed from '../../src/YoutubeEmbed.js';
 - ### Advanced
 
   [Super size this integer](https://repl.it/@AodhanHayter/super-size-this-integer)
+
+## Lessons
 
 TODO - Lesson on Javascript Objects
 <YoutubeEmbed link="https://www.youtube.com/embed/NpEaa2P7qZI" />
