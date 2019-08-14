@@ -1,6 +1,6 @@
 ---
 title: 'Day 7 - JS Fundamentals I'
-metaTitle: 'Boom.Camp - Week 3 - Day 7'
+metaTitle: 'Boom.Camp - Week 2 - Day 7'
 metaDescription: 'Boom.Camp Day 7 Lessons'
 ---
 

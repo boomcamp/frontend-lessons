@@ -1,6 +1,6 @@
 ---
 title: 'Day 6 - Web Basics'
-metaTitle: 'Boom.Camp - Week 3 - Day 6'
+metaTitle: 'Boom.Camp - Week 2 - Day 6'
 metaDescription: 'Boom.Camp Day 6 Lessons'
 ---
 

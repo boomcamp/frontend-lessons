@@ -1,6 +1,6 @@
 ---
 title: 'Day 8 - JS Fundamentals II'
-metaTitle: 'Boom.Camp - Week 3 - Day 8'
+metaTitle: 'Boom.Camp - Week 2 - Day 8'
 metaDescription: 'Boom.Camp Day 8 Lessons'
 ---
 

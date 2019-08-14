@@ -1,6 +1,6 @@
 ---
 title: 'Day 9 - JS Fundamentals III'
-metaTitle: 'Boom.Camp - Week 3 - Day 9'
+metaTitle: 'Boom.Camp - Week 2 - Day 9'
 metaDescription: 'Boom.Camp Day 9 Lessons'
 ---
 
@@ -9,6 +9,17 @@ import YoutubeEmbed from '../../src/YoutubeEmbed.js';
 ## Pre-Reading
 
 [Understand JavaScript's "this"](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
+
+## Toy Problem
+
+- ### Beginner
+
+  [Fizz Buzz](https://repl.it/@AodhanHayter/fizz-buzz)
+
+- ### Advanced
+
+  [Remove the minimum](https://repl.it/@AodhanHayter/remove-the-minimum)
+
 
 ## Lesson
 
