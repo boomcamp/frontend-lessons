@@ -46,6 +46,7 @@ export default class HTML extends React.Component {
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossOrigin="anonymous"
           />
+          <script src="https://apis.google.com/js/api.js" />
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>

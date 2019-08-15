@@ -1,4 +1,6 @@
-require('dotenv').config();
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+});
 
 const config = require('./config');
 
@@ -26,9 +28,9 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve(`./src/templates/docs.js`),
-      },
+      // options: {
+      //   component: require.resolve(`./src/templates/docs.js`),
+      // },
     },
     {
       resolve: 'gatsby-mdx',
@@ -54,8 +56,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'docs',
-        path: `${__dirname}/content/`,
+        name: 'lessons',
+        path: `${__dirname}/lessons/`,
       },
     },
     {
