@@ -4,7 +4,7 @@ import styled from 'react-emotion';
 import { getAuth } from '../util/googleAuth.js';
 import Loader from '../components/Loader.js';
 
-const { Consumer, Provider } = React.createContext('authentication');
+export const AuthContext = React.createContext('authentication');
 
 const CenterContent = styled('div')`
   height: 100vh;
@@ -59,7 +59,7 @@ class Authentication extends React.Component {
   };
 
   login = () => {
-    return this.state.authClient.signIn().then(user => {
+    return this.state.authClient.signIn({ prompt: 'select_account' }).then(user => {
       this.setState({
         value: {
           ...this.state.value,
@@ -69,22 +69,32 @@ class Authentication extends React.Component {
     });
   };
 
+  disconnect = () => {
+    this.state.authClient.disconnect();
+  };
+
+  signOut = () => {
+    return this.state.authClient.signOut()
+  }
+
   render() {
     return (
-      <Provider
+      <AuthContext.Provider
         value={{
           ...this.state.value,
           authenticated: this.authenticated,
           login: this.login,
+          signOut: this.signOut,
+          disconnect: this.disconnect,
         }}
       >
         {!!this.state.authClient ? this.props.children : <CenteredLoader />}
-      </Provider>
+      </AuthContext.Provider>
     );
   }
 }
 
-Authentication.Consumer = Consumer;
+Authentication.Consumer = AuthContext.Consumer;
 Authentication.Provider = Authentication;
 
 export default Authentication;

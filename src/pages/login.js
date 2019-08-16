@@ -3,7 +3,7 @@ import { navigate } from 'gatsby';
 import styled from 'react-emotion';
 import GoogleLogin from 'react-google-login';
 
-import Authentication from '../components/authentication.js';
+import { AuthContext } from '../components/authentication.js';
 
 const LoginContainer = styled('div')`
   height: 300px;
@@ -14,11 +14,20 @@ const LoginContainer = styled('div')`
 `;
 
 const Login = () => {
-  const { authenticated, login } = React.useContext(Authentication.Consumer);
+  const { authenticated, login, signOut, disconnect } = React.useContext(
+    AuthContext
+  );
 
-  return authenticated() ? (
-    navigate('/')
-  ) : (
+  const [ signedIn, setSignedIn ] = React.useState(false);
+
+  React.useEffect(() => {
+    if (authenticated()) {
+      setSignedIn(true)
+      navigate('/');
+    }
+  }, [authenticated()]);
+
+  return (
     <LoginContainer>
       <h1> Welcome to the Boom.Camp Frontend course </h1>
       <p>
