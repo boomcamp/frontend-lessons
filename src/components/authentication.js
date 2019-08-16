@@ -1,8 +1,18 @@
 import React from 'react';
+import styled from 'react-emotion';
 
 import { getAuth } from '../util/googleAuth.js';
+import Loader from '../components/Loader.js';
 
 const { Consumer, Provider } = React.createContext('authentication');
+
+const CenterContent = styled('div')`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 function getUserProfile(user) {
   const profile = user.getBasicProfile();
@@ -16,6 +26,12 @@ function getUserProfile(user) {
     familyName: profile.getFamilyName(),
   };
 }
+
+const CenteredLoader = () => (
+  <CenterContent>
+    <Loader />
+  </CenterContent>
+);
 
 class Authentication extends React.Component {
   state = {
@@ -62,7 +78,7 @@ class Authentication extends React.Component {
           login: this.login,
         }}
       >
-        {!!this.state.authClient ? this.props.children : <h2>Loading...</h2>}
+        {!!this.state.authClient ? this.props.children : <CenteredLoader />}
       </Provider>
     );
   }
