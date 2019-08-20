@@ -5,9 +5,9 @@ import { navigate } from 'gatsby';
 import { AuthContext } from '../components/authentication.js';
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => {
-  const { authenticated, authClient } = React.useContext(AuthContext);
+  const { isSignedIn} = React.useContext(AuthContext);
 
-  if (!authenticated()) {
+  if (!isSignedIn) {
     navigate('/login');
   }
 

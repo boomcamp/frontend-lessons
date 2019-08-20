@@ -1,15 +1,15 @@
 const config = {
   gatsby: {
     pathPrefix: '/',
-    siteUrl: 'https://learn.hasura.io',
+    siteUrl: 'https://frontend.boom.camp',
     gaTrackingId: null,
   },
   header: {
     logo:
       'https://graphql-engine-cdn.hasura.io/learn-hasura/assets/homepage/favicon.png',
-    logoLink: 'https://learn.hasura.io',
+    logoLink: '',
     title: 'Boom.Camp Frontend Course',
-    githubUrl: 'https://github.com/hasura/gatsby-gitbook-boilerplate',
+    githubUrl: '',
     helpUrl: '',
     tweetText: '',
     links: [{ text: 'boom.camp', link: 'http://boom.camp' }],

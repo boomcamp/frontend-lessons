@@ -1,7 +1,6 @@
 import React from 'react';
 import { navigate } from 'gatsby';
 import styled from 'react-emotion';
-import GoogleLogin from 'react-google-login';
 
 import { AuthContext } from '../components/authentication.js';
 
@@ -14,18 +13,15 @@ const LoginContainer = styled('div')`
 `;
 
 const Login = () => {
-  const { authenticated, login, signOut, disconnect } = React.useContext(
+  const { isSignedIn, login } = React.useContext(
     AuthContext
   );
 
-  const [ signedIn, setSignedIn ] = React.useState(false);
-
   React.useEffect(() => {
-    if (authenticated()) {
-      setSignedIn(true)
+    if (isSignedIn) {
       navigate('/');
     }
-  }, [authenticated()]);
+  }, [isSignedIn]);
 
   return (
     <LoginContainer>

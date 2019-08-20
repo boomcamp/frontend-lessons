@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Loader = () => {
-  const [dots, setDots] = React.useState('');
+  const [dots, setDots] = React.useState('...');
 
   React.useEffect(() => {
     const interval = setInterval(() => {

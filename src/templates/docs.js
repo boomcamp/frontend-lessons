@@ -2,46 +2,14 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
-import styled, { injectGlobal } from 'react-emotion';
+import styled from 'react-emotion';
+import { Global, css } from '@emotion/core';
 import { Layout, Link } from '$components';
 import NextPrevious from '../components/NextPrevious';
 import '../components/styles.css';
 import config from '../../config';
 
 const forcedNavOrder = config.sidebar.forcedNavOrder;
-
-injectGlobal`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html, body {
-    font-family: -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      "Roboto",
-      "Roboto Light",
-      "Oxygen",
-      "Ubuntu",
-      "Cantarell",
-      "Fira Sans",
-      "Droid Sans",
-      "Helvetica Neue",
-      sans-serif,
-      "Apple Color Emoji",
-      "Segoe UI Emoji",
-      "Segoe UI Symbol";
-
-    font-size: 16px;
-  }
-
-  a {
-    transition: color 0.15s;
-    color: #663399;
-  }
-`;
 
 const Edit = styled('div')`
   padding: 1rem 1.5rem;
@@ -127,10 +95,32 @@ export default class MDXRuntimeTest extends Component {
         : canonicalUrl;
     canonicalUrl = canonicalUrl + mdx.fields.slug;
 
-    return this.props.pageContext === 'login' ? (
-      <h1>Login</h1>
-    ) : (
+    return (
       <Layout {...this.props}>
+        <Global
+          styles={css`
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+
+            html,
+            body {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                'Roboto', 'Roboto Light', 'Oxygen', 'Ubuntu', 'Cantarell',
+                'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif,
+                'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+              font-size: 16px;
+            }
+
+            a {
+              transition: color 0.15s;
+              color: #663399;
+            }
+          `}
+        />
         <Helmet>
           {metaTitle ? <title>{metaTitle}</title> : null}
           {metaTitle ? <meta name="title" content={metaTitle} /> : null}

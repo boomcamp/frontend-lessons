@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import config from '../config';
 
 export default class HTML extends React.Component {

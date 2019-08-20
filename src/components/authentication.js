@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'react-emotion';
+import { navigate } from 'gatsby';
+import { useAsync } from 'react-async-hook';
 
 import { getAuth } from '../util/googleAuth.js';
 import Loader from '../components/Loader.js';
@@ -33,66 +35,56 @@ const CenteredLoader = () => (
   </CenterContent>
 );
 
-class Authentication extends React.Component {
-  state = {
-    authClient: undefined,
-    value: {},
-  };
+const Authentication = ({ children }) => {
+  const [authClient, setAuthClient] = React.useState(undefined);
+  const [values, setValues] = React.useState({});
+  const client = useAsync(() => getAuth('auth2'), []);
 
-  componentDidMount() {
-    getAuth('auth2').then(client => {
-      let value = {};
-      this.setState({ authClient: client });
-      if (client.isSignedIn.get()) {
-        value.userProfile = getUserProfile(client.currentUser.get());
-      }
-      this.setState({ value: { ...value } });
-    });
-  }
-
-  authenticated = () => {
-    if (!this.state.authClient) {
-      return false;
+  React.useEffect(() => {
+    if (!client.loading) {
+      setAuthClient(client.result);
+      setValues({ isSignedIn: client.result.isSignedIn.get() });
     }
+  }, [client.loading]);
 
-    return this.state.authClient.isSignedIn.get();
-  };
-
-  login = () => {
-    return this.state.authClient.signIn({ prompt: 'select_account' }).then(user => {
-      this.setState({
-        value: {
-          ...this.state.value,
-          userProfile: getUserProfile(user),
-        },
+  React.useEffect(() => {
+    if (values.isSignedIn) {
+      setValues({
+        ...values,
+        userProfile: getUserProfile(client.result.currentUser.get()),
       });
-    });
-  };
+    } else {
+      navigate('/login');
+    }
+  }, [values.isSignedIn]);
 
-  disconnect = () => {
-    this.state.authClient.disconnect();
-  };
-
-  signOut = () => {
-    return this.state.authClient.signOut()
-  }
-
-  render() {
-    return (
-      <AuthContext.Provider
-        value={{
-          ...this.state.value,
-          authenticated: this.authenticated,
-          login: this.login,
-          signOut: this.signOut,
-          disconnect: this.disconnect,
-        }}
-      >
-        {!!this.state.authClient ? this.props.children : <CenteredLoader />}
-      </AuthContext.Provider>
+  function login() {
+    return authClient.signIn({ prompt: 'select_account' }).then(user =>
+      setValues({
+        ...values,
+        isSignedIn: true,
+        userProfile: getUserProfile(user),
+      })
     );
   }
-}
+
+  function logout() {
+    authClient.signOut();
+    setValues({...values, isSignedIn: false})
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        ...values,
+        login,
+        logout,
+      }}
+    >
+      {!authClient ? <CenteredLoader /> : children}
+    </AuthContext.Provider>
+  );
+};
 
 Authentication.Consumer = AuthContext.Consumer;
 Authentication.Provider = Authentication;

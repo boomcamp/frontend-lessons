@@ -77,7 +77,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       name: `slug`,
       node,
-      value: `${value}`,
+      value: `/${value}`
     });
 
     createNodeField({
